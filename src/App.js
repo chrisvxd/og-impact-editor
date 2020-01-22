@@ -292,7 +292,7 @@ const App = () => {
       </header>
 
       <main className="Main">
-        <section style={{ height: '100%', position: 'relative' }}>
+        <section style={{ height: '100%', position: 'relative', flexGrow: 1 }}>
           <SplitPane defaultSize="66.7%" split="vertical">
             <SplitPane defaultSize="50%" split="vertical" primary="second">
               <Editor
