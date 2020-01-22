@@ -1,38 +1,145 @@
+html {
+  height: 100%;
+}
+
+body {
+  background: rgb(23, 24, 31);
+  height: 100%;
+  font-family: 'Avenir Next', 'Helvetica Neue', sans-serif;
+}
+
+#root {
+  height: 100%;
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+iframe {
+  border: none;
+}
+
+.Preview {
+  background: white;
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.Preview-item {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+}
+
+.Preview-itemContent {
   align-items: center;
+  display: flex;
+  position: relative;
+  flex-direction: column;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-grow: 1;
+}
+
+.Preview-frame {
+  background: white;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.Preview-image {
+  display: block;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.Editor {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.Editor-title,
+.Preview-title {
+  background-color: #404040;
   color: white;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 8px;
 }
 
-.App-link {
-  color: #61dafb;
+.Preview-subtitle {
+  background-color: rgb(236, 236, 236);
+  font-weight: 500;
+  font-size: 14px;
+  padding: 16px;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Preview-subtitle::-webkit-scrollbar {
+  display: none;
+}
+
+#HTMLEditor,
+#CSSEditor,
+#JSONEditor {
+  flex-grow: 1;
+}
+
+.Header {
+  display: flex;
+  padding: 16px;
+}
+
+.Header-actions {
+  margin-left: auto;
+}
+
+.Button {
+  appearance: none;
+  background: rgb(121, 43, 230);
+  border: none;
+  border-radius: 4px;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.Button:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.Main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Resizer {
+  cursor: ew-resize;
+  background: rgb(111, 111, 111);
+  width: 4px;
+}
+
+.Header-logo {
+  align-items: center;
+  display: flex;
+  height: 100%;
+}
+
+.Header-logoProduct {
+  color: rgb(209, 43, 255);
+  font-size: 24px;
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid darkgray;
+  font-weight: 500;
 }
