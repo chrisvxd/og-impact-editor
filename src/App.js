@@ -16,8 +16,6 @@ import qs from 'qs';
 import './App.css';
 import 'normalize.css';
 
-import 'react-splitter-layout/lib/index.css';
-
 import htmlExample from './html-example';
 import cssExample from './css-example';
 
