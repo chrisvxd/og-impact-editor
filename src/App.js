@@ -24,7 +24,7 @@ import cssExample from './css-example';
 import { writeStorage, useLocalStorage } from '@rehooks/local-storage';
 import ClipLoader from 'react-spinners/ClipLoader';
 
-const host = 'http://localhost:3000';
+const host = 'https://ssfy.sh/chrisvxd/og-impact';
 
 const Editor = ({ label, mode, ...props }) => (
   <div className="Editor">
