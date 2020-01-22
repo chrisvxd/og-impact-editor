@@ -131,6 +131,7 @@ iframe {
 
 .Header-logo {
   align-items: center;
+  align-self: center;
   display: flex;
   height: 100%;
 }
