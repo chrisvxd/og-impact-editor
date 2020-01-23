@@ -294,7 +294,7 @@ const App = () => {
           <SplitPane defaultSize="66.7%" split="vertical">
             <SplitPane defaultSize="50%" split="vertical" primary="second">
               <Editor
-                label="HTML"
+                label="HTML / Handlebars"
                 mode="html"
                 onChange={setHtml}
                 value={html}
