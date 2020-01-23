@@ -8,6 +8,7 @@ export default `.body {
   display: flex;
   font-family: Arial;
   height: 100%;
+  flex-direction: column;
   justify-content: center;
 }
 
