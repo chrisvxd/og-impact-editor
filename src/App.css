@@ -117,10 +117,13 @@ iframe {
 
 .Header {
   display: flex;
-  padding: 16px;
+  padding: 8px 16px;
 }
 
 .Header-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-left: auto;
 }
 

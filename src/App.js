@@ -294,10 +294,9 @@ const App = () => {
               border: 'none',
               borderRadius: 4,
               fontSize: 16,
-              padding: '0 16px',
-              height: '100%',
+              padding: '12px 16px',
               width: 200,
-              marginRight: 24
+              marginRight: 16
             }}
           />
           <Button onClick={publish}>Publish</Button>
