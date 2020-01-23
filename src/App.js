@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { useDebounce } from 'use-debounce';
 
 import AceEditor from 'react-ace';
 import SplitPane from 'react-split-pane';
 import Frame from 'react-frame-component';
 import debounce from 'lodash.debounce';
 import axios from 'axios';
+import handlebars from 'handlebars';
 
 import 'ace-builds/src-noconflict/mode-html';
 import 'ace-builds/src-noconflict/mode-css';
@@ -101,6 +103,16 @@ const Preview = ({ html, css, params }) => {
     );
   }, [html, css, params]);
 
+  const [debouncedHtml] = useDebounce(html, 500);
+  const [debouncedParams] = useDebounce(params, 500);
+  const [compiledHtml, setCompiledHtml] = useState(() =>
+    handlebars.compile(html)(params)
+  );
+
+  useEffect(() => {
+    setCompiledHtml(handlebars.compile(debouncedHtml)(debouncedParams));
+  }, [debouncedHtml, debouncedParams]);
+
   return (
     <div className="Preview">
       <div className="Preview-item">
@@ -122,7 +134,7 @@ const Preview = ({ html, css, params }) => {
               <style type="text/css">{css}</style>
             </>
           }>
-          <div dangerouslySetInnerHTML={{ __html: html }} />
+          <div dangerouslySetInnerHTML={{ __html: compiledHtml }} />
         </Frame>
       </div>
       <div className="Preview-item">
