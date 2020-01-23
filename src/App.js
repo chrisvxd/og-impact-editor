@@ -105,12 +105,27 @@ const Preview = ({ html, css, params }) => {
 
   const [debouncedHtml] = useDebounce(html, 500);
   const [debouncedParams] = useDebounce(params, 500);
-  const [compiledHtml, setCompiledHtml] = useState(() =>
-    handlebars.compile(html)(params)
-  );
+  const [compiledHtml, setCompiledHtml] = useState(() => {
+    try {
+      return handlebars.compile(html)(params);
+    } catch (e) {
+      console.warn('Error when compiling handlebars, using raw HTML');
+      console.warn(e);
+
+      return html;
+    }
+  });
 
   useEffect(() => {
-    setCompiledHtml(handlebars.compile(debouncedHtml)(debouncedParams));
+    try {
+      const compiled = handlebars.compile(debouncedHtml)(debouncedParams);
+
+      setCompiledHtml(compiled);
+    } catch (e) {
+      console.warn('Error when compiling handlebars, using raw HTML');
+      console.warn(e);
+      setCompiledHtml(debouncedHtml);
+    }
   }, [debouncedHtml, debouncedParams]);
 
   return (
