@@ -34,6 +34,8 @@ iframe {
   flex-direction: column;
   width: 100%;
   overflow: hidden;
+  position: relative;
+  justify-content: center;
 }
 
 .Preview-itemContent {
@@ -47,8 +49,19 @@ iframe {
 
 .Preview-frame {
   background: white;
-  flex-grow: 1;
-  width: 100%;
+  -ms-zoom: 0.55;
+  -moz-transform: scale(0.55);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.55);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.55);
+  width: 1200px;
+  height: 615px;
+  border-radius: 16px;
+  position: absolute;
+  align-self: center;
+  margin-top: 20px;
+  box-shadow: rgb(0, 0, 0) 0px 2px 16px;
 }
 
 .Preview-image {
@@ -70,6 +83,17 @@ iframe {
   font-weight: 600;
   font-size: 18px;
   padding: 8px;
+}
+
+.Preview-item:first-of-type {
+  background: #16171d;
+}
+
+.Preview-item:first-of-type .Preview-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 
 .Preview-subtitle {

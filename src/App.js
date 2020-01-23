@@ -131,7 +131,7 @@ const Preview = ({ html, css, params }) => {
   return (
     <div className="Preview">
       <div className="Preview-item">
-        <div className="Preview-title">Local Preview (iframe)</div>
+        <div className="Preview-title">iframe Preview</div>
 
         <Frame
           className="Preview-frame"
@@ -153,7 +153,7 @@ const Preview = ({ html, css, params }) => {
         </Frame>
       </div>
       <div className="Preview-item">
-        <div className="Preview-title">Rendered Preview</div>
+        <div className="Preview-title">Image Preview</div>
         <div className="Preview-subtitle">
           {`https://ogi.sh?${qs.stringify({
             template: 'a1b2c3d',
