@@ -41,6 +41,7 @@ iframe {
 .Preview-itemContent {
   align-items: center;
   display: flex;
+  padding: 16px;
   position: relative;
   flex-direction: column;
   justify-content: center;
@@ -66,8 +67,8 @@ iframe {
 
 .Preview-image {
   display: block;
-  max-height: 100%;
-  max-width: 100%;
+  box-shadow: 0 2px 16px #d8d8d8;
+  max-width: 509px;
 }
 
 .Editor {

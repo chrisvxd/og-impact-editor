@@ -89,7 +89,7 @@ const debouncedFetchPreview = debounce(
 
 const Preview = ({ html, css, params }) => {
   const [dataUri, setDataUri] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     debouncedFetchPreview(
@@ -162,47 +162,9 @@ const Preview = ({ html, css, params }) => {
         </div>
 
         <div className="Preview-itemContent">
-          <div
-            style={{
-              background: 'white',
-              borderRadius: 8,
-              borderWidth: 1,
-              borderStyle: 'solid',
-              borderColor: '#CCD6DD',
-              boxShadow: '0 2px 16px #d8d8d8',
-              color: 'black',
-              margin: 16,
-              fontFamily:
-                'system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", sans-serif',
-              width: 507
-            }}>
-            <div
-              style={{
-                backgroundSize: 'cover',
-                backgroundRepeat: 'no-repeat',
-                backgroundImage: `url("${dataUri}")`,
-                borderTopLeftRadius: 7,
-                borderTopRightRadius: 7,
-                width: '100%',
-                height: 266,
-                overflow: 'hidden'
-              }}
-            />
-            <div
-              style={{
-                borderTopWidth: 1,
-                borderTopStyle: 'solid',
-                borderTopColor: '#CCD6DD',
-                padding: 8
-              }}>
-              <div style={{ marginBottom: 4 }}>Web page</div>
-              <div style={{ color: 'rgb(101, 119, 134)', marginBottom: 4 }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              </div>
-              <div style={{ color: 'rgb(101, 119, 134)' }}>example.com</div>
-            </div>
-          </div>
+          {dataUri && (
+            <img className="Preview-image" src={dataUri} alt="Preview" />
+          )}
 
           {loading && (
             <div
@@ -210,8 +172,8 @@ const Preview = ({ html, css, params }) => {
                 margin: 16,
                 marginTop: 0,
                 position: 'absolute',
-                bottom: 8,
-                right: 8
+                bottom: dataUri ? 8 : 'calc(50% - 32px)',
+                right: dataUri ? 8 : 'calc(50% - 32px)'
               }}>
               <ClipLoader width={16} height={16} />
             </div>
