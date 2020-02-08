@@ -128,6 +128,21 @@ iframe {
   margin-left: auto;
 }
 
+.Header-action {
+  margin-left: 32px;
+  font-weight: 600;
+}
+
+.Header-action a {
+  color: #ffffff;
+  padding: 8px;
+  text-decoration: none;
+}
+
+.Header-action a:hover {
+  opacity: 0.8;
+}
+
 .Button {
   appearance: none;
   background: rgb(121, 43, 230);

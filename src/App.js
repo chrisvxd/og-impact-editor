@@ -259,21 +259,30 @@ const App = () => {
         </div>
 
         <div className="Header-actions">
-          <input
-            type="text"
-            placeholder="API Key"
-            value={apiKey}
-            onChange={e => setApiKey(e.target.value)}
-            style={{
-              border: 'none',
-              borderRadius: 4,
-              fontSize: 16,
-              padding: '12px 16px',
-              width: 200,
-              marginRight: 16
-            }}
-          />
-          <Button onClick={publish}>Publish</Button>
+          <div className="Header-action">
+            <a href="https://ogimpact.sh">What's this?</a>
+          </div>
+          <div className="Header-action">
+            <a href="https://github.com/chrisvxd/og-impact">GitHub</a>
+          </div>
+
+          <div className="Header-action">
+            <input
+              type="text"
+              placeholder="API Key"
+              value={apiKey}
+              onChange={e => setApiKey(e.target.value)}
+              style={{
+                border: 'none',
+                borderRadius: 4,
+                fontSize: 16,
+                padding: '12px 16px',
+                width: 200,
+                marginRight: 16
+              }}
+            />
+            <Button onClick={publish}>Publish to ogi.sh</Button>
+          </div>
         </div>
       </header>
 
