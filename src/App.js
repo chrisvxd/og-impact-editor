@@ -254,8 +254,10 @@ const App = () => {
               width={200}
             />
           </a>
-          <div className="Header-logoProduct">Editor BETA</div>
+          <div className="Header-logoProduct">Editor</div>
+          <div className="Header-logoBeta">BETA</div>
         </div>
+
         <div className="Header-actions">
           <input
             type="text"
