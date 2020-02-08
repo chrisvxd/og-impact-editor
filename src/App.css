@@ -138,11 +138,23 @@ iframe {
   padding: 12px;
   padding-left: 16px;
   padding-right: 16px;
+  position: relative;
 }
 
 .Button:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+.Button-spinner {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: 0;
+  bottom: 0;
 }
 
 .Main {

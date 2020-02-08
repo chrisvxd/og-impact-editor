@@ -47,14 +47,18 @@ const Button = ({ children, onClick }) => {
   return (
     <button
       className="Button"
+      style={{ opacity: loading ? 0.8 : 1 }}
       disabled={loading}
       onClick={async () => {
-        console.log('Clicked buton');
+        console.log('Clicked button');
         setLoading(true);
         await onClick();
         setLoading(false);
       }}>
-      {children}
+      <span style={{ opacity: loading ? 0 : 1 }}>{children}</span>
+      <span className="Button-spinner">
+        {loading && <ClipLoader size={16} color="white" />}
+      </span>
     </button>
   );
 };
@@ -175,7 +179,7 @@ const Preview = ({ html, css, params }) => {
                 bottom: dataUri ? 8 : 'calc(50% - 32px)',
                 right: dataUri ? 8 : 'calc(50% - 32px)'
               }}>
-              <ClipLoader width={16} height={16} />
+              <ClipLoader size={24} />
             </div>
           )}
         </div>
@@ -208,18 +212,31 @@ const App = () => {
   const [apiKey, setApiKey] = useState('');
 
   const publish = useCallback(async () => {
-    const response = await axios.post(
-      `${host}/register`,
-      { body: html, styles: css },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: apiKey
-        }
-      }
-    );
+    if (!apiKey) {
+      alert('Please provide your API key before publishing a template.');
 
-    alert(`Save successful. Use template ID ${response.data.template}.`);
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        `${host}/publish`,
+        { body: html, styles: css },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: apiKey
+          }
+        }
+      );
+
+      alert(`Save successful. Use template ID ${response.data.template}.`);
+    } catch (e) {
+      alert(
+        'Publish was unsuccessful. Please ensure you are providing a valid API key.'
+      );
+      console.log(e);
+    }
   }, [html, css, apiKey]);
 
   useEffect(() => {
@@ -251,7 +268,7 @@ const App = () => {
             type="text"
             placeholder="API Key"
             value={apiKey}
-            onChange={setApiKey}
+            onChange={e => setApiKey(e.target.value)}
             style={{
               border: 'none',
               borderRadius: 4,
