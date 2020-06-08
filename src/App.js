@@ -204,11 +204,15 @@ const debouncedWriteQueryParams = debounce(
   { maxWait: 5000 }
 );
 
-const useQueryParam = (key) => {
+const useQueryParam = (key, json = false) => {
   const params = qs.parse(window.location.search.replace('?', ''));
 
   // make backwards compatible
   const [storedValue] = useLocalStorage(key);
+
+  if (json) {
+    return JSON.parse(params[key] || 'null') || storedValue;
+  }
 
   return params[key] || storedValue;
 };
@@ -216,7 +220,7 @@ const useQueryParam = (key) => {
 const App = () => {
   const storedHtml = useQueryParam('html');
   const storedCss = useQueryParam('css');
-  const storedParams = JSON.parse(useQueryParam('params') || '{}');
+  const storedParams = useQueryParam('params', true) || {};
 
   const [html, setHtml] = useState(storedHtml || htmlExample);
   const [css, setCss] = useState(storedCss || cssExample);
