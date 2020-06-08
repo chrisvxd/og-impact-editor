@@ -54,7 +54,8 @@ const Button = ({ children, onClick }) => {
         setLoading(true);
         await onClick();
         setLoading(false);
-      }}>
+      }}
+    >
       <span style={{ opacity: loading ? 0 : 1 }}>{children}</span>
       <span className="Button-spinner">
         {loading && <ClipLoader size={16} color="white" />}
@@ -71,8 +72,8 @@ const debouncedFetchPreview = debounce(
       responseType: 'arraybuffer',
       headers: {
         'Content-Type': 'application/json',
-        Accept: 'image/*'
-      }
+        Accept: 'image/*',
+      },
     });
 
     if (response.headers['content-type']) {
@@ -100,7 +101,7 @@ const Preview = ({ html, css, params }) => {
       {
         body: html,
         styles: css,
-        ...params
+        ...params,
       },
       setDataUri,
       setLoading
@@ -152,7 +153,8 @@ const Preview = ({ html, css, params }) => {
               </style>
               <style type="text/css">{css}</style>
             </>
-          }>
+          }
+        >
           <div dangerouslySetInnerHTML={{ __html: compiledHtml }} />
         </Frame>
       </div>
@@ -161,7 +163,7 @@ const Preview = ({ html, css, params }) => {
         <div className="Preview-subtitle">
           {`https://ogi.sh?${qs.stringify({
             template: 'a1b2c3d',
-            ...params
+            ...params,
           })}`}
         </div>
 
@@ -177,8 +179,9 @@ const Preview = ({ html, css, params }) => {
                 marginTop: 0,
                 position: 'absolute',
                 bottom: dataUri ? 8 : 'calc(50% - 32px)',
-                right: dataUri ? 8 : 'calc(50% - 32px)'
-              }}>
+                right: dataUri ? 8 : 'calc(50% - 32px)',
+              }}
+            >
               <ClipLoader size={24} />
             </div>
           )}
@@ -225,8 +228,8 @@ const App = () => {
         {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: apiKey
-          }
+            Authorization: apiKey,
+          },
         }
       );
 
@@ -271,14 +274,14 @@ const App = () => {
               type="text"
               placeholder="API Key"
               value={apiKey}
-              onChange={e => setApiKey(e.target.value)}
+              onChange={(e) => setApiKey(e.target.value)}
               style={{
                 border: 'none',
                 borderRadius: 4,
                 fontSize: 16,
                 padding: '12px 16px',
                 width: 200,
-                marginRight: 16
+                marginRight: 16,
               }}
             />
             <Button onClick={publish}>Publish to ogi.sh</Button>
@@ -303,7 +306,7 @@ const App = () => {
             <Editor
               label="Params"
               mode="json"
-              onChange={val => {
+              onChange={(val) => {
                 try {
                   setParams(JSON.parse(val));
                   setParamsJson(val);
