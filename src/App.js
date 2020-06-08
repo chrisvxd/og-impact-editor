@@ -36,6 +36,7 @@ const Editor = ({ label, mode, ...props }) => (
       height="100%"
       width="100%"
       wrapEnabled
+      tabSize={2}
       {...props}
     />
   </div>
