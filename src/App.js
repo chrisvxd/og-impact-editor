@@ -21,7 +21,7 @@ import 'normalize.css';
 import htmlExample from './html-example';
 import cssExample from './css-example';
 
-import { writeStorage, useLocalStorage } from '@rehooks/local-storage';
+import { useLocalStorage } from '@rehooks/local-storage';
 import ClipLoader from 'react-spinners/ClipLoader';
 
 const host = 'https://ssfy.sh/chrisvxd/og-impact';
@@ -191,20 +191,31 @@ const Preview = ({ html, css, params }) => {
   );
 };
 
-const debouncedWriteStorage = debounce(
+const debouncedWriteQueryParams = debounce(
   async (html, css, params) => {
-    writeStorage('html', html);
-    writeStorage('css', css);
-    writeStorage('params', params);
+    const obj = { html, css, params: JSON.stringify(params) };
+
+    const querystring = qs.stringify(obj);
+
+    window.history.replaceState(obj, '', `?${querystring || ''}`);
   },
   1000,
   { maxWait: 5000 }
 );
 
+const useQueryParam = (key) => {
+  const params = qs.parse(window.location.search.replace('?', ''));
+
+  // make backwards compatible
+  const [storedValue] = useLocalStorage(key);
+
+  return params[key] || storedValue;
+};
+
 const App = () => {
-  const [storedHtml] = useLocalStorage('html');
-  const [storedCss] = useLocalStorage('css');
-  const [storedParams] = useLocalStorage('params');
+  const storedHtml = useQueryParam('html');
+  const storedCss = useQueryParam('css');
+  const storedParams = JSON.parse(useQueryParam('params') || '{}');
 
   const [html, setHtml] = useState(storedHtml || htmlExample);
   const [css, setCss] = useState(storedCss || cssExample);
@@ -243,7 +254,7 @@ const App = () => {
   }, [html, css, apiKey]);
 
   useEffect(() => {
-    debouncedWriteStorage(html, css, params);
+    debouncedWriteQueryParams(html, css, params);
   }, [html, css, params]);
 
   return (
