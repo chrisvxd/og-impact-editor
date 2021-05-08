@@ -9,7 +9,7 @@
     "@testing-library/user-event": "^7.1.2",
     "ace-builds": "^1.4.8",
     "axios": "^0.19.2",
-    "handlebars": "^4.7.2",
+    "handlebars": "^4.7.7",
     "lodash.debounce": "^4.0.8",
     "normalize.css": "^8.0.1",
     "qs": "^6.9.4",
